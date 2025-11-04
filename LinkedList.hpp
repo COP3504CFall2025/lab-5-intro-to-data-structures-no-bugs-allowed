@@ -110,7 +110,7 @@ public:
 		tail = nextTail;
 		return tail;
 	}
-	void Clear() {
+	void clear() {
 
 		Node<T>* currNode = head;
 
@@ -130,14 +130,14 @@ public:
 
 	// Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
-		Clear();
+		clear();
 		head = other.getHead();
 		tail = other.getTail();
 		count = other.getCount();
 		return *this;
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
-		Clear();
+		clear();
 
 		Node<T>* currNode = rhs.getHead();
 
@@ -165,7 +165,7 @@ public:
 		count = other.getCount();
 	}
 	~LinkedList() {
-		Clear();
+		clear();
 	}
 
 private:
