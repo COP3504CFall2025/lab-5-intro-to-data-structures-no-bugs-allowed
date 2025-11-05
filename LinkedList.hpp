@@ -91,13 +91,18 @@ public:
 			return false;
 		}
 
+		if (head->next == nullptr) {
+			delete head;
+			head = nullptr;
+			return true;
+		}
+
 		Node<T>* nextHead = head->next;
 		nextHead->prev = nullptr;
-		head->next = nullptr;
 		delete head;
 		head = nextHead;
 
-		return head;
+		return true;
 	}
 	bool removeTail() {
 
