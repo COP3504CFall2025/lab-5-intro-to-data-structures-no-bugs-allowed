@@ -69,12 +69,12 @@ public:
 	}
 	void addTail(const T& data) {
 
-		count++;
-
 		if (head == nullptr) {
 			addHead(data);
 			return;
 		}
+
+		count++;
 
 		Node<T>* newTailPtr = new Node(data);
 		tail->next = newTailPtr;
