@@ -93,6 +93,7 @@ public:
 
 		Node<T>* nextHead = head->next;
 		nextHead->prev = nullptr;
+		head->next = nullptr;
 		delete head;
 		head = nextHead;
 
