@@ -130,6 +130,10 @@ public:
 
 	// Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
+
+		if (*other == this) {
+			return *this;
+		}
 		clear();
 		head = other.getHead();
 		tail = other.getTail();
@@ -137,9 +141,14 @@ public:
 		return *this;
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
+
+		if (*rhs == this) {
+			return *this;
+		}
+
 		clear();
 
-		Node<T>* currNode = rhs.getHead();
+		const Node<T>* currNode = rhs.getHead();
 
 		for (unsigned int i = 0; i < rhs.getCount(); i++) {
 			addTail(currNode->data);
@@ -152,7 +161,7 @@ public:
 	LinkedList() : head(nullptr), tail(nullptr), count(0) {}
 	LinkedList(const LinkedList<T>& list) {
 
-		Node<T>* currNode = list.getHead();
+		const Node<T>* currNode = list.getHead();
 		count = list.getCount();
 
 		for (unsigned int i = 0; i < list.getCount(); i++) {
