@@ -112,19 +112,34 @@ public:
 	}
 	void clear() {
 
-		Node<T>* currNode = head;
-
-		while (currNode->next) {
-			if (currNode->prev) {
-				delete currNode->prev;
-			}
-			currNode = currNode->next;
+		if (head == nullptr) {
+			return;
 		}
 
-		delete currNode;
+		// Node<T>* currNode = head;
+		//
+		// while (currNode->next) {
+		// 	if (currNode->prev) {
+		// 		delete currNode->prev;
+		// 	}
+		// 	currNode = currNode->next;
+		// }
+		//
+		// delete currNode;
+		//
+		// tail = nullptr;
+		// head = nullptr;
+		// count = 0;
+		Node<T>* currNode = head;
 
-		tail = nullptr;
+		while (currNode) {
+			Node<T>* temp = currNode->next;
+			delete currNode;
+			currNode = temp;
+		}
+
 		head = nullptr;
+		tail = nullptr;
 		count = 0;
 	}
 
