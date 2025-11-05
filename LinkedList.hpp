@@ -131,7 +131,7 @@ public:
 	// Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
 
-		if (*other == this) {
+		if (&other == this) {
 			return *this;
 		}
 		clear();
@@ -142,7 +142,7 @@ public:
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
 
-		if (*rhs == this) {
+		if (&rhs == this) {
 			return *this;
 		}
 
