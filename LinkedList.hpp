@@ -94,6 +94,7 @@ public:
 		if (head->next == nullptr) {
 			delete head;
 			head = nullptr;
+			count--;
 			return true;
 		}
 
@@ -101,6 +102,7 @@ public:
 		nextHead->prev = nullptr;
 		delete head;
 		head = nextHead;
+		count--;
 
 		return true;
 	}
@@ -110,11 +112,20 @@ public:
 			return false;
 		}
 
+		if (tail->prev == nullptr) {
+			delete tail;
+			tail = nullptr;
+			head = nullptr;
+			count--;
+			return true;
+		}
+
 		Node<T>* nextTail = tail->prev;
 		nextTail->next = nullptr;
 		delete tail;
 		tail = nextTail;
-		return tail;
+		count--;
+		return true;
 	}
 	void clear() {
 
