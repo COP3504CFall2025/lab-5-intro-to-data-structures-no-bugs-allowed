@@ -92,7 +92,7 @@ public:
 
 
 	// Removal
-	bool RemoveHead() {
+	bool removeHead() {
 
 		if (head == nullptr) {
 			return false;
@@ -181,6 +181,8 @@ public:
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
 
+		std::cout << "here" << "\n";
+
 		if (&rhs == this) {
 			return *this;
 		}
@@ -189,8 +191,10 @@ public:
 
 		const Node<T>* currNode = rhs.getHead();
 
-		for (unsigned int i = 0; i < rhs.getCount(); i++) {
+		while (currNode != nullptr) {
+			std::cout << "hey" << "\n";
 			addTail(currNode->data);
+			currNode = currNode->next;
 		}
 
 		return *this;
@@ -200,11 +204,14 @@ public:
 	LinkedList() : head(nullptr), tail(nullptr), count(0) {}
 	LinkedList(const LinkedList<T>& list) {
 
+		head = nullptr;
+		tail = nullptr;
 		const Node<T>* currNode = list.getHead();
 		count = list.getCount();
 
-		for (unsigned int i = 0; i < list.getCount(); i++) {
+		while (currNode != nullptr) {
 			addTail(currNode->data);
+			currNode = currNode->next;
 		}
 	}
 	LinkedList(LinkedList<T>&& other) noexcept {
