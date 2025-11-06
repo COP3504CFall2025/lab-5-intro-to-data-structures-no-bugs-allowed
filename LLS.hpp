@@ -43,4 +43,22 @@ public:
     std::size_t getSize() const noexcept override {
         return static_cast<std::size_t>(LinkedList<T>::getCount());
     }
+
+    LLS<T>& operator=(const LLS<T>&& other) noexcept {
+
+        if (&other == this) {
+            return *this;
+        }
+
+        LinkedList<T>::operator=(std::move(other));
+    }
+
+    LLS<T>& operator=(const LLS<T>& rhs) {
+
+        if (&rhs == this) {
+            return *this;
+        }
+
+        LinkedList<T>::operator=(rhs);
+    }
 };
