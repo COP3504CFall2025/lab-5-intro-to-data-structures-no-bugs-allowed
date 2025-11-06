@@ -1,4 +1,5 @@
 #pragma once
+#include <stdexcept>
 
 #include "Interfaces.hpp"
 #include "LinkedList.hpp"
@@ -20,6 +21,10 @@ public:
 
     // Deletion
     T pop() override {
+
+        if (LinkedList<T>::getTail() == nullptr) {
+            throw std::runtime_error("Attempted to pop on an empty stack.");
+        }
         T res = LinkedList<T>::getTail()->data;
         LinkedList<T>::removeTail();
         return res;
@@ -27,6 +32,9 @@ public:
 
     // Access
     T peek() const override {
+        if (LinkedList<T>::getTail() == nullptr) {
+            throw std::runtime_error("Attempted to peek on an empty stack.");
+        }
         return LinkedList<T>::getTail()->data;
 
     }
