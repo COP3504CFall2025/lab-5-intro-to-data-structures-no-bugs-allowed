@@ -175,9 +175,12 @@ public:
 			return *this;
 		}
 		clear();
-		head = other.getHead();
-		tail = other.getTail();
-		count = other.getCount();
+		head = other.head;
+		tail = other.tail;
+		count = other.count;
+		other.head = nullptr;
+		other.tail = nullptr;
+		other.count = 0;
 		return *this;
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
@@ -207,8 +210,8 @@ public:
 
 		head = nullptr;
 		tail = nullptr;
-		const Node<T>* currNode = list.getHead();
-		count = list.getCount();
+		const Node<T>* currNode = list.head;
+		count = list.count;
 
 		while (currNode != nullptr) {
 			addTail(currNode->data);
@@ -216,9 +219,12 @@ public:
 		}
 	}
 	LinkedList(LinkedList<T>&& other) noexcept {
-		head = other.getHead();
-		tail = other.getTail();
-		count = other.getCount();
+		head = other.head;
+		tail = other.tail;
+		count = other.count;
+		other.head = nullptr;
+		other.tail = nullptr;
+		other.count = 0;
 	}
 	~LinkedList() {
 		clear();
