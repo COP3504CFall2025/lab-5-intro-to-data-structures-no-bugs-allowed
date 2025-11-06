@@ -101,6 +101,7 @@ public:
 		if (head->next == nullptr) {
 			delete head;
 			head = nullptr;
+			tail = nullptr;
 			count--;
 			return true;
 		}
