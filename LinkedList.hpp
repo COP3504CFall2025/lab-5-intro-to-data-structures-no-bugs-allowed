@@ -211,8 +211,7 @@ public:
 		head = nullptr;
 		tail = nullptr;
 		const Node<T>* currNode = list.head;
-		count = list.count;
-
+		count = 0;
 		while (currNode != nullptr) {
 			addTail(currNode->data);
 			currNode = currNode->next;
