@@ -11,7 +11,7 @@ private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLS() : LinkedList<T>(), StackInterface<T>() {}
+    LLS() : StackInterface<T>() {}
 
     // Insertion
     void push(const T& item) override {
