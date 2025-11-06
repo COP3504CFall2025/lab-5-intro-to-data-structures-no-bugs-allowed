@@ -11,17 +11,28 @@ private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLS();
+    LLS() : LinkedList<T>(), StackInterface<T>() {}
 
     // Insertion
-    void push(const T& item) override;
+    void push(const T& item) override {
+        LinkedList<T>::addTail(item);
+    }
 
     // Deletion
-    T pop() override;
+    T pop() override {
+        T res = LinkedList<T>::getTail()->data;
+        LinkedList<T>::removeTail();
+        return res;
+    }
 
     // Access
-    T peek() const override;
+    T peek() const override {
+        return LinkedList<T>::getTail()->data;
+
+    }
 
     //Getters
-    std::size_t getSize() const noexcept override;
+    std::size_t getSize() const noexcept override {
+        return static_cast<std::size_t>(LinkedList<T>::getCount());
+    }
 };
