@@ -20,6 +20,10 @@ public:
 	// Behaviors
 	void printForward() const {
 
+		if (head == nullptr) {
+			return;
+		}
+
 		Node<T>* currNode = head;
 
 		while (currNode->next != nullptr) {
@@ -32,6 +36,9 @@ public:
 
 	void printReverse() const {
 
+		if (tail == nullptr) {
+			return;
+		}
 		Node<T>* currNode = tail;
 
 		while (currNode->prev != nullptr) {
