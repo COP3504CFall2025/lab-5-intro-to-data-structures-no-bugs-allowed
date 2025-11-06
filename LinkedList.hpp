@@ -115,7 +115,7 @@ public:
 	}
 	bool removeTail() {
 
-		if (head == nullptr) {
+		if (tail == nullptr || head == nullptr) {
 			return false;
 		}
 
