@@ -92,7 +92,7 @@ public:
 
 
 	// Removal
-	bool removeHead() {
+	bool RemoveHead() {
 
 		if (head == nullptr) {
 			return false;
