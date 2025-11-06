@@ -12,23 +12,15 @@ public:
 
     StackInterface() : LinkedList<T>() {}
 
-    void push(const T& item) {
-        LinkedList<T>::addTail(item);
-    }
+    virtual void push(const T& item) = 0;
 
-    virtual T pop() {
-        T res = LinkedList<T>::getTail()->data;
-        LinkedList<T>::removeTail();
-        return res;
-    }
+    virtual T pop() = 0;
 
-    virtual T peek() const {
-        return LinkedList<T>::getTail()->data;
-    }
+    virtual T peek() const = 0;
 
-    [[nodiscard]] std::size_t getSize() const noexcept {
-        return static_cast<std::size_t>(LinkedList<T>::getCount());
-    }
+    [[nodiscard]] virtual std::size_t getSize() const noexcept = 0;
+
+    virtual ~StackInterface() {}
 
 };
 
