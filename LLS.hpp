@@ -12,39 +12,39 @@ private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLS() : LinkedList<T>() {}
+    LLS() : list(LinkedList<T>()) {}
 
-    LLS(const LLS<T>& other) : LinkedList<T>(other) {}
-    LLS(const LLS<T>&& other) noexcept : LinkedList<T>(other) {}
+    LLS(const LLS<T>& other) : list(other) {}
+    LLS(const LLS<T>&& other) noexcept : list(other) {}
 
     // Insertion
     void push(const T& item) override {
-        LinkedList<T>::addTail(item);
+        list.addTail(item);
     }
 
     // Deletion
     T pop() override {
 
-        if (LinkedList<T>::getTail() == nullptr) {
+        if (list.getTail() == nullptr) {
             throw std::runtime_error("Attempted to pop on an empty stack.");
         }
-        T res = LinkedList<T>::getTail()->data;
-        LinkedList<T>::removeTail();
+        T res = list.getTail()->data;
+        list.removeTail();
         return res;
     }
 
     // Access
     T peek() const override {
-        if (LinkedList<T>::getTail() == nullptr) {
+        if (list.getTail() == nullptr) {
             throw std::runtime_error("Attempted to peek on an empty stack.");
         }
-        return LinkedList<T>::getTail()->data;
+        return list.getTail()->data;
 
     }
 
     //Getters
     std::size_t getSize() const noexcept override {
-        return static_cast<std::size_t>(LinkedList<T>::getCount());
+        return static_cast<std::size_t>(list.getCount());
     }
 
     LLS<T>& operator=(const LLS<T>&& other) noexcept {
@@ -53,7 +53,7 @@ public:
             return *this;
         }
 
-        LinkedList<T>::operator=(std::move(other));
+        list = other;
         return *this;
     }
 
@@ -62,8 +62,7 @@ public:
         if (&rhs == this) {
             return *this;
         }
-
-        LinkedList<T>::operator=(rhs);
+        list = rhs;
         return *this;
     }
 };
