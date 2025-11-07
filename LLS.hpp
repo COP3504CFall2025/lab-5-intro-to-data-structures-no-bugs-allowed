@@ -7,12 +7,15 @@
 #include <stdexcept>
 
 template <typename T>
-class LLS : public StackInterface<T> {
+class LLS : public LinkedList<T>, public StackInterface<T> {
 private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLS() : StackInterface<T>() {}
+    LLS() : LinkedList<T>() {}
+
+    LLS(const LLS<T>& other) : LinkedList<T>(other) {}
+    LLS(const LLS<T>&& other) noexcept : LinkedList<T>(other) {}
 
     // Insertion
     void push(const T& item) override {
@@ -51,6 +54,7 @@ public:
         }
 
         LinkedList<T>::operator=(std::move(other));
+        return *this;
     }
 
     LLS<T>& operator=(const LLS<T>& rhs) {
@@ -60,5 +64,6 @@ public:
         }
 
         LinkedList<T>::operator=(rhs);
+        return *this;
     }
 };
