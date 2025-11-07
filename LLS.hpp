@@ -7,7 +7,7 @@
 #include <stdexcept>
 
 template <typename T>
-class LLS : public LinkedList<T>, public StackInterface<T> {
+class LLS : virtual public LinkedList<T>, public StackInterface<T> {
 private:
     LinkedList<T> list;
 public:
@@ -15,7 +15,7 @@ public:
     LLS() : list(LinkedList<T>()) {}
 
     LLS(const LLS<T>& other) : list(other) {}
-    LLS(const LLS<T>&& other) noexcept : list(std::move(other)) {}
+    LLS(const LLS<T>&& other) noexcept : list(std::move(other.list)) {}
 
     // Insertion
     void push(const T& item) override {
@@ -53,7 +53,7 @@ public:
             return *this;
         }
 
-        list = std::move(other);
+        list = std::move(other.list);
         return *this;
     }
 
