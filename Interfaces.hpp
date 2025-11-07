@@ -6,11 +6,9 @@
 
 
 template <typename T>
-class StackInterface : public LinkedList<T> {
+class StackInterface{
 
 public:
-
-    StackInterface() : LinkedList<T>() {}
 
     virtual void push(const T& item) = 0;
 
