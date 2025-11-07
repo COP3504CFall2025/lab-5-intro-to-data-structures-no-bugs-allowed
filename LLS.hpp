@@ -15,7 +15,7 @@ public:
     LLS() : list(LinkedList<T>()) {}
 
     LLS(const LLS<T>& other) : list(other) {}
-    LLS(const LLS<T>&& other) noexcept : list(other) {}
+    LLS(const LLS<T>&& other) noexcept : list(std::move(other)) {}
 
     // Insertion
     void push(const T& item) override {
@@ -53,7 +53,7 @@ public:
             return *this;
         }
 
-        list = other;
+        list = std::move(other);
         return *this;
     }
 
