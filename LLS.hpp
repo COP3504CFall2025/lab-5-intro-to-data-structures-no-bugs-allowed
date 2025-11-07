@@ -14,7 +14,7 @@ public:
     // Constructor
     LLS() : list(LinkedList<T>()) {}
 
-    LLS(const LLS<T>& other) : list(other) {}
+    LLS(const LLS<T>& other) : list(other.list) {}
     LLS(const LLS<T>&& other) noexcept : list(std::move(other.list)) {}
 
     // Insertion
@@ -62,7 +62,7 @@ public:
         if (&rhs == this) {
             return *this;
         }
-        list = rhs;
+        list = rhs.list;
         return *this;
     }
 };
