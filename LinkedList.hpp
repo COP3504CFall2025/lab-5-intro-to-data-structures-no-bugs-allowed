@@ -31,7 +31,6 @@ public:
 			currNode = currNode->next;
 		}
 
-		std::cout << currNode->data << "\n";
 	}
 
 	void printReverse() const {
@@ -141,20 +140,6 @@ public:
 			return;
 		}
 
-		// Node<T>* currNode = head;
-		//
-		// while (currNode->next) {
-		// 	if (currNode->prev) {
-		// 		delete currNode->prev;
-		// 	}
-		// 	currNode = currNode->next;
-		// }
-		//
-		// delete currNode;
-		//
-		// tail = nullptr;
-		// head = nullptr;
-		// count = 0;
 		Node<T>* currNode = head;
 
 		while (currNode) {
@@ -181,11 +166,10 @@ public:
 		other.head = nullptr;
 		other.tail = nullptr;
 		other.count = 0;
+		std::cout << "I am making this my new count: " << count << "\n";
 		return *this;
 	}
 	LinkedList<T>& operator=(const LinkedList<T>& rhs) {
-
-		std::cout << "here" << "\n";
 
 		if (&rhs == this) {
 			return *this;
@@ -196,7 +180,6 @@ public:
 		const Node<T>* currNode = rhs.getHead();
 
 		while (currNode != nullptr) {
-			std::cout << "hey" << "\n";
 			addTail(currNode->data);
 			currNode = currNode->next;
 		}
