@@ -151,6 +151,7 @@ public:
         delete[] array_;
         array_ = tempArr;
         tempArr = nullptr;
+        curr_size_--;
 
         return res;
     }
