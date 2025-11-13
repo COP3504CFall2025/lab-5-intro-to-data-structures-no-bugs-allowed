@@ -21,8 +21,6 @@ public:
         for (int i = 0; i < other.curr_size_l; i++) {
             array_[i] = other.array_[i];
         }
-
-        return *this;
     }
 
     ABS& operator=(const ABS& rhs) {
