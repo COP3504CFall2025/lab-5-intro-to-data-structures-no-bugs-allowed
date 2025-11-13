@@ -34,7 +34,7 @@ public:
             throw std::runtime_error("Attempted to popFront on empty LLDQ");
         }
 
-        T res = list.getHead();
+        T res = list.getHead()->data;
         list.removeHead();
         return res;
     }
@@ -43,7 +43,7 @@ public:
             throw std::runtime_error("Attempted to popBack on empty LLDQ");
         }
 
-        T res = list.getTail();
+        T res = list.getTail()->data;
         list.removeTail();
         return res;
     }
@@ -80,7 +80,7 @@ public:
         return *this;
     }
 
-    LLDQ& operator=(const LLDQ&& other) {
+    LLDQ& operator=(const LLDQ& other) {
 
         if (&other == this) {
             return *this;
