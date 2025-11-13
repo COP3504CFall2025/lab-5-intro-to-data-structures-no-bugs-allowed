@@ -141,7 +141,7 @@ public:
             throw std::runtime_error("Attempted to dequeue on empty ABQ");
         }
 
-        if (curr_size_ * 2 < capacity_) {
+        if (curr_size_ * 2 <= capacity_) {
             capacity_ /= 2;
         }
 
