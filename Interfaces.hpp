@@ -30,7 +30,7 @@ public:
 
     virtual void enqueue(const T& item) = 0;
 
-    virtual void dequeue() = 0;
+    virtual T dequeue() = 0;
 
     virtual T peek() const = 0;
 

@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 template <typename T>
-class LLQ : public QueueInterface<T> {
+class LLQ : virtual public LinkedList<T>, public QueueInterface<T> {
 private:
     LinkedList<T> list;
 public:
