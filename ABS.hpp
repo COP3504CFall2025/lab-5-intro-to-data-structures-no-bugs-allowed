@@ -148,7 +148,7 @@ public:
         array_[curr_size_ - 1] = 0;
         curr_size_--;
 
-        if (curr_size_ * 2 <= capacity_) {
+        if (curr_size_ * 2 < capacity_) {
             capacity_ /= 2;
         }
         return res;
