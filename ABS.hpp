@@ -105,12 +105,12 @@ public:
             if (capacity_ > 0) {
                 capacity_ *= scale_factor_;
             } else {
-                capacity_ = 2;
+                capacity_ = 1;
             }
 
             T* tempData = new T[capacity_];
 
-            for (int i = 0; i < curr_size_; i++) {
+            for (long long i = 0; i < curr_size_; i++) {
                 tempData[i] = array_[i];
             }
 
@@ -118,7 +118,7 @@ public:
             delete[] array_;
             array_ = tempData;
             tempData = nullptr;
-            capacity_ *= scale_factor_;
+            
         } else {
 
             array_[curr_size_] = data;
@@ -126,7 +126,7 @@ public:
         }
 
         curr_size_++;
-        
+
     }
 
     T peek() const override {
