@@ -41,45 +41,26 @@ public:
 
 
 template <typename T>
-class DequeInterface : public LinkedList<T>{
+class DequeInterface {
 
 public:
 
-    DequeInterface() : LinkedList<T>() {}
 
-    void pushFront(const T& item) {
-        LinkedList<T>::addHead(item);
-    }
+    virtual void pushFront(const T& item) = 0;
 
-    void pushBack(const T& item) {
-        LinkedList<T>::addTail(item);
-    }
+    virtual void pushBack(const T& item) = 0;
 
-    T popFront() {
+    virtual T popFront() = 0;
 
-        T res = LinkedList<T>::getHead()->data;
-        LinkedList<T>::removeHead();
-        return res;
-    }
+    virtual T popBack() = 0;
 
-    T popBack() {
-        T res = LinkedList<T>::getTail()->data;
-        LinkedList<T>::removeTail();
-        return res;
-    }
+    virtual const T& front() const = 0;
 
-    const T& front() const {
-        return LinkedList<T>::getHead();
-    }
+    virtual const T& back() const = 0;
 
-    const T& back() const {
-        return LinkedList<T>::getTail();
-    }
+    [[nodiscard]] virtual std::size_t getSize() const noexcept = 0;
 
-    [[nodiscard]] std::size_t getSize() const noexcept {
-        return static_cast<std::size_t>(LinkedList<T>::getCount());
-    }
-
+    virtual ~DequeInterface() {}
 
 };
 
