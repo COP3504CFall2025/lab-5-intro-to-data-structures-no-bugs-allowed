@@ -14,7 +14,7 @@ public:
     LLQ() : list(LinkedList<T>()) {}
 
     LLQ(const LLQ& other) : list(other.list) {}
-    LLQ(const LLQ&& other) noexcept : list(std::move(other.list)) {}
+    LLQ(LLQ&& other) noexcept : list(std::move(other.list)) {}
 
     // Insertion
     void enqueue(const T& item) override {
@@ -48,7 +48,7 @@ public:
         return list.getCount();
     }
 
-    LLQ& operator=(const LLQ&& other) noexcept {
+    LLQ& operator=(LLQ&& other) noexcept {
 
         if (&other == this) {
             return *this;

@@ -15,7 +15,7 @@ public:
     LLS() : list(LinkedList<T>()) {}
 
     LLS(const LLS<T>& other) : list(other.list) {}
-    LLS(const LLS<T>&& other) noexcept : list(std::move(other.list)) {}
+    LLS(LLS<T>&& other) noexcept : list(std::move(other.list)) {}
 
     // Insertion
     void push(const T& item) override {
@@ -43,11 +43,11 @@ public:
     }
 
     //Getters
-    std::size_t getSize() const noexcept override {
+    [[nodiscard]] std::size_t getSize() const noexcept override {
         return static_cast<std::size_t>(list.getCount());
     }
 
-    LLS<T>& operator=(const LLS<T>&& other) noexcept {
+    LLS<T>& operator=(LLS&& other) noexcept {
 
         if (&other == this) {
             return *this;
