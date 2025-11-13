@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <cstddef>
 #include <stdexcept>
 #include "Interfaces.hpp"
@@ -89,11 +89,26 @@ public:
         return array_;
     }
 
+    T getCapacity() {
+        return capacity_;
+    }
+
+    T getSize() {
+        return curr_size_;
+    }
+
     // Push item onto the stack
     void push(const T& data) override {
 
+
         if (curr_size_ >= capacity_) {
-            T* tempData = new T[capacity_ * scale_factor_];
+            if (capacity_ > 0) {
+                capacity_ *= scale_factor_;
+            } else {
+                capacity_ = 2;
+            }
+
+            T* tempData = new T[capacity_];
 
             for (int i = 0; i < curr_size_; i++) {
                 tempData[i] = array_[i];
@@ -102,13 +117,16 @@ public:
             tempData[curr_size_] = data;
             delete[] array_;
             array_ = tempData;
+            tempData = nullptr;
+            capacity_ *= scale_factor_;
         } else {
 
             array_[curr_size_] = data;
 
         }
-        capacity_ *= scale_factor_;
+
         curr_size_++;
+        
     }
 
     T peek() const override {
