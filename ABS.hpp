@@ -72,6 +72,7 @@ public:
         capacity_ = 0;
         curr_size_ = 0;
         delete[] array_;
+        array_ = nullptr;
     }
 
     // Get the number of items in the ABS
@@ -159,6 +160,7 @@ public:
 
         delete[] array_;
         array_ = newArr;
+        newArr = nullptr;
         return res;
     }
 
