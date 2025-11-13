@@ -49,8 +49,7 @@ public:
         other.capacity_ = 0;
         other.curr_size_ = 0;
         other.array_ = nullptr;
-
-        return *this;
+        
     }
 
     ABS& operator=(ABS&& rhs) noexcept {
