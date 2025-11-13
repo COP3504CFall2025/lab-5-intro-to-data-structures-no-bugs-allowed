@@ -54,14 +54,14 @@ public:
             throw std::runtime_error("Attempted to front() on empty LLDQ");
         }
 
-        return list.getHead();
+        return list.getHead()->data;
     }
     const T& back() const override {
         if (list.getTail() == nullptr) {
             throw std::runtime_error("Attempted to back() on empty LLDQ");
         }
 
-        return list.getTail();
+        return list.getTail()->data;
     }
 
     // Getter
