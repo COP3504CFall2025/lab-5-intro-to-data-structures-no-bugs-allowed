@@ -29,6 +29,7 @@ public:
             return *this;
         }
 
+        delete[] array_;
         capacity_ = rhs.capacity_;
         curr_size_ = rhs.curr_size_;
         array_ = new T[rhs.capacity_];
@@ -58,6 +59,7 @@ public:
             return *this;
         }
 
+        delete[] array_;
         capacity_ = rhs.capacity_;
         curr_size_ = rhs.curr_size_;
         array_ = rhs.array_;
