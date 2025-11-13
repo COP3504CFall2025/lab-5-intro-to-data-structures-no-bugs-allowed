@@ -141,6 +141,10 @@ public:
             throw std::runtime_error("Attempted to dequeue on empty ABQ");
         }
 
+        if (curr_size_ - 1 * 2 < capacity_) {
+            capacity_ /= 2;
+        }
+
         T* tempArr = new T[capacity_];
         T res = array_[0];
 
