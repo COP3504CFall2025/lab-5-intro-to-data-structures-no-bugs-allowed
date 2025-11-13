@@ -118,7 +118,7 @@ public:
             delete[] array_;
             array_ = tempData;
             tempData = nullptr;
-            
+
         } else {
 
             array_[curr_size_] = data;
@@ -147,6 +147,10 @@ public:
         T res = array_[curr_size_ - 1];
         array_[curr_size_ - 1] = 0;
         curr_size_--;
+
+        if (curr_size_ * 2 <= capacity_) {
+            capacity_ /= 2;
+        }
         return res;
     }
 
