@@ -11,18 +11,63 @@ private:
     LinkedList<T> list;
 public:
     // Constructor
-    LLQ();
+    LLQ() : list(LinkedList<T>()) {}
+
+    LLQ(const LLQ& other) : list(other.list) {}
+    LLQ(const LLQ&& other) noexcept : list(std::move(other.list)) {}
 
     // Insertion
-    void enqueue(const T& item) override;
+    void enqueue(const T& item) override {
+        list.addTail(item);
+    }
 
     // Deletion
-    T dequeue() override;
+    T dequeue() override {
+
+        if (list.getHead() == nullptr) {
+            throw std::runtime_error("Attempted to dequeue empty queue");
+        }
+
+        T res = list.getHead()->data;
+
+        list.removeHead();
+        return res;
+    }
 
     // Access
-    T peek() const override;
+    T peek() const override {
+        if (list.getHead() != nullptr) {
+            return list.getHead()->data;
+        }
+
+        throw std::runtime_error("Attempted to peek at nullptr");
+    }
 
     // Getter
-    std::size_t getSize() const noexcept override;
+    [[nodiscard]] std::size_t getSize() const noexcept override {
+        return list.getCount();
+    }
+
+    LLQ& operator=(const LLQ&& other) noexcept {
+
+        if (&other == this) {
+            return *this;
+        }
+
+        list = std::move(other.list);
+        return *this;
+
+    }
+
+    LLQ& operator=(const LLQ& other) {
+
+        if (&other == this) {
+            return *this;
+        }
+
+        this->list = other.list;
+
+        return *this;
+    }
 
 };
