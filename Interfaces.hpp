@@ -24,25 +24,19 @@ public:
 
 
 template <typename T>
-class QueueInterface : public LinkedList<T>{
+class QueueInterface{
 public:
     QueueInterface() : LinkedList<T>() {}
 
-    void enqueue(const T& item) {
-        LinkedList<T>::addTail(item);
-    }
+    virtual void enqueue(const T& item) = 0;
 
-    void dequeue() {
-        LinkedList<T>::removeHead();
-    }
+    virtual void dequeue() = 0;
 
-    T peek() const {
-        return LinkedList<T>::getHead()->data;
-    }
+    virtual T peek() const = 0;
 
-    std::size_t getSize() const noexcept {
-        return LinkedList<T>::getCount();
-    }
+    [[nodiscard]] virtual std::size_t getSize() const noexcept = 0;
+
+    virtual ~QueueInterface() {}
 
 };
 
