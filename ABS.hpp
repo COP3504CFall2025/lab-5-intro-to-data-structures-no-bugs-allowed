@@ -49,7 +49,7 @@ public:
         other.capacity_ = 0;
         other.curr_size_ = 0;
         other.array_ = nullptr;
-        
+
     }
 
     ABS& operator=(ABS&& rhs) noexcept {
@@ -107,7 +107,7 @@ public:
             array_[curr_size_] = data;
 
         }
-
+        capacity_ *= scale_factor_;
         curr_size_++;
     }
 
