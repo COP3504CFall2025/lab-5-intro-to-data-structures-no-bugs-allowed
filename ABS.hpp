@@ -151,6 +151,14 @@ public:
         if (curr_size_ * 2 < capacity_) {
             capacity_ /= 2;
         }
+
+        T* newArr = new T[capacity_];
+        for (long long i = 0; i < curr_size_; i++) {
+            newArr[i] = array_[i];
+        }
+
+        delete[] array_;
+        array_ = newArr;
         return res;
     }
 
