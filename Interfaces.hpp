@@ -26,7 +26,6 @@ public:
 template <typename T>
 class QueueInterface{
 public:
-    QueueInterface() : LinkedList<T>() {}
 
     virtual void enqueue(const T& item) = 0;
 
