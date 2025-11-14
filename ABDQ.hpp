@@ -131,10 +131,7 @@ public:
         if (size_ == capacity_) {
             ensureCapacity();
         }
-
-        if (front_ - back_ == 1 || back_ - front_ == capacity_ - 1) {
-            throw std::runtime_error("Tried to pushfront on full ABDQ");
-        }
+        
 
         if (size_ == 0) {
             data_[0] = item;
