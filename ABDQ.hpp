@@ -106,18 +106,14 @@ public:
     // Insertion
     void pushFront(const T& item) override {
 
-        if (size_ == capacity_) {
-            ensureCapacity();
-        }
-
-        if (front_ - back_ == 1 || back_ - front_ == capacity_ - 1) {
-            throw std::runtime_error("Tried to pushfront on full ABDQ");
-        }
-
         if (size_ == 0) {
             data_[0] = item;
             size_++;
             return;
+        }
+
+        if (size_ == capacity_) {
+            ensureCapacity();
         }
 
         if (front_ == 0) {
@@ -236,9 +232,9 @@ public:
             newData[i] = data_[i];
         }
 
+        delete[] data_;
         data_ = newData;
         capacity_ *= 2;
-        delete[] data_;
 
     }
 
