@@ -110,6 +110,12 @@ public:
             throw std::runtime_error("Tried to pushfront on full ABDQ");
         }
 
+        if (size_ == 0) {
+            data_[0] = item;
+            size_++;
+            return;
+        }
+
         if (front_ == 0) {
             front_ = capacity_ - 1;
         } else {
@@ -124,6 +130,12 @@ public:
 
         if (front_ - back_ == 1 || back_ - front_ == capacity_ - 1) {
             throw std::runtime_error("Tried to pushfront on full ABDQ");
+        }
+
+        if (size_ == 0) {
+            data_[0] = item;
+            size_++;
+            return;
         }
 
         if (back_ == capacity_ - 1) {
@@ -158,7 +170,7 @@ public:
 
     T popBack() override {
 
-        if (size_ == 0) {
+        if (size_ == 0 || size_ == capacity_) {
             throw std::runtime_error("Attempted to popFront on an empty ABDQ");
         }
 
@@ -214,7 +226,7 @@ public:
 
     void shrinkIfNeeded() {
 
-        if (size_ * 2 > capacity_ / 2) {
+        if (size_ > capacity_ / 2) {
             return;
         }
 
@@ -238,6 +250,15 @@ public:
         front_ = 0;
         back_ = capacity_ - 1;
 
+    }
+
+    void display() {
+
+        for (long long i = 0; i < capacity_; i++) {
+            std::cout << data_[i] << " | ";
+        }
+
+        std::cout << "\n";
     }
 
 };
