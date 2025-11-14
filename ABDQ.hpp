@@ -106,6 +106,10 @@ public:
     // Insertion
     void pushFront(const T& item) override {
 
+        if (size_ == capacity_) {
+            ensureCapacity();
+        }
+
         if (front_ - back_ == 1 || back_ - front_ == capacity_ - 1) {
             throw std::runtime_error("Tried to pushfront on full ABDQ");
         }
@@ -127,6 +131,10 @@ public:
     }
 
     void pushBack(const T& item) override {
+
+        if (size_ == capacity_) {
+            ensureCapacity();
+        }
 
         if (front_ - back_ == 1 || back_ - front_ == capacity_ - 1) {
             throw std::runtime_error("Tried to pushfront on full ABDQ");
@@ -165,14 +173,19 @@ public:
         }
 
         size_--;
+
+        if (size_ <= capacity_ / 2) {
+            shrinkIfNeeded();
+        }
         return res;
     }
 
     T popBack() override {
 
-        if (size_ == 0 || size_ == capacity_) {
+        if (size_ == 0) {
             throw std::runtime_error("Attempted to popFront on an empty ABDQ");
         }
+
 
         T res = data_[back_];
         data_[back_] = 0;
@@ -184,6 +197,11 @@ public:
         }
 
         size_--;
+
+        if (size_ <= capacity_ / 2) {
+            shrinkIfNeeded();
+        }
+
         return res;
 
     }
@@ -225,10 +243,6 @@ public:
     }
 
     void shrinkIfNeeded() {
-
-        if (size_ > capacity_ / 2) {
-            return;
-        }
 
         T* newData = new T[capacity_/2];
 
